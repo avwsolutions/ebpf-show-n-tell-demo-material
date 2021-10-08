@@ -1,0 +1,16 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: block-rabbitmq-traffic
+  namespace: sock-shop
+spec:
+  endpointSelector:
+    matchLabels:
+      name: rabbitmq
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            name: queue-master
+      toPorts:
+        - ports:
+            - port: "5672"

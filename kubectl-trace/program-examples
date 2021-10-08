@@ -1,0 +1,2 @@
+'tracepoint:syscalls:sys_enter_execve { join(args->argv); }'
+'tracepoint:raw_syscalls:sys_enter { @[pid, comm] = count(); }'
